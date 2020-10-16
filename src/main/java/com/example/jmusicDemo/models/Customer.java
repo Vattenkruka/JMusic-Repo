@@ -3,54 +3,93 @@ package com.example.jmusicDemo.models;
 // Employee, Customer, Invoice, InvoiceLine
 // Track, Genre, osv
 
-//
+// private strings, getters, setters, constructor
 
 public class Customer {
-    private String customerId;
-    private String companyName;
-    private String contactName;
-    private String phone;
+    private String CustomerId;
+    private String FirstName;
+    private String LastName;
+    private String Company;
+    private String Address;
+    private String City;
+    private String State;
+    private String Country;
+    private String PostalCode;
+    private String Phone;
+    private String Fax;
+    private String Email;
+    //private String SupportRepId;
     public Customer() {
     }
 
-    public Customer(String customerId, String companyName, String contactName, String phone) {
-        this.customerId = customerId;
-        this.companyName = companyName;
-        this.contactName = contactName;
-        this.phone = phone;
+    //Constructor for all elements
+    public Customer(String customerId, String firstName,
+                    String lastName, String company,
+                    String address, String city,
+                    String state, String country,
+                    String postalCode, String phone,
+                    String fax, String email) {
+        CustomerId = customerId;
+        FirstName = firstName;
+        LastName = lastName;
+        Company = company;
+        Address = address;
+        City = city;
+        State = state;
+        Country = country;
+        PostalCode = postalCode;
+        Phone = phone;
+        Fax = fax;
+        Email = email;
     }
 
-    // Getters and setters
+    // Getters and Setters
 
-    public String getCustomerId() {
-        return customerId;
-    }
+    public String getCustomerId() { return CustomerId; }
 
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
-    }
+    public void setCustomerId(String customerId) { CustomerId = customerId; }
 
-    public String getCompanyName() {
-        return companyName;
-    }
+    public String getFirstName() { return FirstName; }
 
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
-    }
+    public void setFirstName(String firstName) { FirstName = firstName; }
 
-    public String getContactName() {
-        return contactName;
-    }
+    public String getLastName() { return LastName; }
 
-    public void setContactName(String contactName) {
-        this.contactName = contactName;
-    }
+    public void setLastName(String lastName) { LastName = lastName; }
 
-    public String getPhone() {
-        return phone;
-    }
+    public String getCompany() { return Company; }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
+    public void setCompany(String company) { Company = company; }
+
+    public String getAddress() { return Address; }
+
+    public void setAddress(String address) { Address = address; }
+
+    public String getCity() { return City; }
+
+    public void setCity(String city) { City = city; }
+
+    public String getState() { return State; }
+
+    public void setState(String state) { State = state; }
+
+    public String getCountry() { return Country; }
+
+    public void setCountry(String country) { Country = country; }
+
+    public String getPostalCode() { return PostalCode; }
+
+    public void setPostalCode(String postalCode) { PostalCode = postalCode; }
+
+    public String getPhone() { return Phone; }
+
+    public void setPhone(String phone) { Phone = phone; }
+
+    public String getFax() { return Fax; }
+
+    public void setFax(String fax) { Fax = fax; }
+
+    public String getEmail() { return Email; }
+
+    public void setEmail(String email) { Email = email; }
 }
