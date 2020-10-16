@@ -1,3 +1,4 @@
+/*
 package com.example.jmusicDemo.data_access;
 
 
@@ -20,7 +21,7 @@ public class CustomerRepository {
     */
 
     //CRUD
-
+/*
     public ArrayList<Customer> getAllCustomers(){
         ArrayList<Customer> customers = new ArrayList<>();
         // ---
@@ -155,3 +156,5 @@ public class CustomerRepository {
         return success;
     }
 }
+
+    */
