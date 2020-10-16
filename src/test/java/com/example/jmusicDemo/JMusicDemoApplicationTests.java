@@ -1,13 +1,13 @@
-package se.experis.jmusic;
+package com.example.jmusicDemo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class JmusicApplicationTests {
+class JMusicDemoApplicationTests {
 
-    @Test
-    void contextLoads() {
-    }
+	@Test
+	void contextLoads() {
+	}
 
 }
