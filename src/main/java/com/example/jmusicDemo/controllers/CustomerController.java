@@ -15,7 +15,8 @@ public class CustomerController {
     public ArrayList<Customer> getAllCustomers(){
         return customerRepository.getAllCustomers();
     }
-    @RequestMapping(value = "/api/customers/{id}", method = RequestMethod.GET)
+
+    /*@RequestMapping(value = "/api/customers/{id}", method = RequestMethod.GET)
     public Customer getSpecificCustomer(@PathVariable String id){
         return customerRepository.getSpecificCustomer(id);
     }
@@ -26,6 +27,6 @@ public class CustomerController {
     @RequestMapping(value = "/api/customers", method = RequestMethod.PUT)
     public Boolean updateCustomer(@RequestBody Customer customer){
         return customerRepository.updateCustomer(customer);
-    }
+    }*/
 
 }
