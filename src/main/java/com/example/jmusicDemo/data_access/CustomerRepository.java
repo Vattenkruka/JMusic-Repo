@@ -1,3 +1,4 @@
+
 package com.example.jmusicDemo.data_access;
 
 
@@ -28,13 +29,15 @@ public class CustomerRepository {
             // connect
             conn = DriverManager.getConnection(URL);
             PreparedStatement prep =
-                    conn.prepareStatement("SELECT CustomerID, Company, FirstName, Phone FROM customer");
+                    conn.prepareStatement("SELECT CustomerId, FirstName, LastName, Country, PostalCode, Phone FROM customer");
             ResultSet set = prep.executeQuery();
             while(set.next()){
                 customers.add( new Customer(
-                        set.getString("CustomerID"),
-                        set.getString("Company"),
+                        set.getInt("CustomerId"),
                         set.getString("FirstName"),
+                        set.getString("LastName"),
+                        set.getString("Country"),
+                        set.getString("PostalCode"),
                         set.getString("Phone")
                 ));
             }
@@ -53,8 +56,7 @@ public class CustomerRepository {
         // ---
         return customers;
     }
-
-    public Customer getSpecificCustomer(String id){
+     public Customer getSpecificCustomer(String id){
         Customer customer = null;
         // ---
         try{
@@ -155,3 +157,4 @@ public class CustomerRepository {
         return success;
     }
 }
+
