@@ -6,7 +6,7 @@ package com.example.jmusicDemo.models;
 // private strings, getters, setters, constructor
 
 public class Customer {
-    private String CustomerId;
+    private int CustomerId;
     private String FirstName;
     private String LastName;
     private String Company;
@@ -18,17 +18,19 @@ public class Customer {
     private String Phone;
     private String Fax;
     private String Email;
-    //private String SupportRepId;
+    private int SupportRepId;
+    
     public Customer() {
     }
 
     //Constructor for all elements
-    public Customer(String customerId, String firstName,
+
+    public Customer(int customerId, String firstName,
                     String lastName, String company,
                     String address, String city,
                     String state, String country,
                     String postalCode, String phone,
-                    String fax, String email) {
+                    String fax, String email, int supportRepId) {
         CustomerId = customerId;
         FirstName = firstName;
         LastName = lastName;
@@ -41,13 +43,15 @@ public class Customer {
         Phone = phone;
         Fax = fax;
         Email = email;
+        SupportRepId = supportRepId;
     }
+
 
     // Getters and Setters
 
-    public String getCustomerId() { return CustomerId; }
+    public int getCustomerId() { return CustomerId; }
 
-    public void setCustomerId(String customerId) { CustomerId = customerId; }
+    public void setCustomerId(int customerId) { CustomerId = customerId; }
 
     public String getFirstName() { return FirstName; }
 
@@ -92,4 +96,8 @@ public class Customer {
     public String getEmail() { return Email; }
 
     public void setEmail(String email) { Email = email; }
+
+    public int getSupportRepId() { return SupportRepId; }
+
+    public void setSupportRepId(int supportRepId) { SupportRepId = supportRepId; }
 }
