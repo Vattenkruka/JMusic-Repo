@@ -2,7 +2,7 @@ package com.example.jmusicDemo.models;
 
 public class Employee {
 
-    private String EmployeeID;
+    private int EmployeeID;
     private String LastName;
     private String FirstName;
     private String Title;
@@ -20,7 +20,7 @@ public class Employee {
 
     // Constructor
 
-    public Employee(String employeeID, String lastName,
+    public Employee(int employeeID, String lastName,
                     String firstName, String title,
                     String reportsTo, String birthDate,
                     String hireDate, String address,
@@ -46,9 +46,9 @@ public class Employee {
 
     // Getters and setters
 
-    public String getEmployeeID() { return EmployeeID; }
+    public int getEmployeeID() { return EmployeeID; }
 
-    public void setEmployeeID(String employeeID) { EmployeeID = employeeID; }
+    public void setEmployeeID(int employeeID) { EmployeeID = employeeID; }
 
     public String getLastName() { return LastName; }
 

@@ -29,7 +29,7 @@ public class CustomerRepository {
             // connect
             conn = DriverManager.getConnection(URL);
             PreparedStatement prep =
-                    conn.prepareStatement("SELECT CustomerId, FirstName, LastName, Country, PostalCode, Phone FROM customer");
+                    conn.prepareStatement("SELECT CustomerId, FirstName, LastName, Country, PostalCode, Phone, SupportRepId FROM Customer");
             ResultSet set = prep.executeQuery();
             while(set.next()){
                 customers.add( new Customer(
@@ -38,7 +38,8 @@ public class CustomerRepository {
                         set.getString("LastName"),
                         set.getString("Country"),
                         set.getString("PostalCode"),
-                        set.getString("Phone")
+                        set.getString("Phone"),
+                        set.getInt("SupportRepId")
                 ));
             }
             System.out.println("Get all went well!");
@@ -55,7 +56,7 @@ public class CustomerRepository {
         }
         // ---
         return customers;
-    }
+    }/*
      public Customer getSpecificCustomer(String id){
         Customer customer = null;
         // ---
@@ -156,5 +157,7 @@ public class CustomerRepository {
         // ---
         return success;
     }
+
+ */
 }
 
