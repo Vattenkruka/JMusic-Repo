@@ -10,101 +10,81 @@ public class Customer {
     private int CustomerId;
     private String FirstName;
     private String LastName;
-    private String Company;
-    private String Address;
-    private String City;
-    private String State;
     private String Country;
     private String PostalCode;
     private String Phone;
-    private String Fax;
-    private String Email;
     private int SupportRepId;
 
-    public Customer() {
-    }
-
     //Constructor for all elements
-    public Customer(int customerId, String firstName,
-                    String lastName, String company,
-                    String address, String city,
-                    String state, String country,
-                    String postalCode, String phone,
-                    String fax, String email, int supportRepId) {
-        CustomerId = customerId;
-        FirstName = firstName;
-        LastName = lastName;
-        Company = company;
-        Address = address;
-        City = city;
-        State = state;
-        Country = country;
-        PostalCode = postalCode;
-        Phone = phone;
-        Fax = fax;
-        Email = email;
-        SupportRepId = supportRepId;
-    }
 
     public Customer(int customerId, String firstName,
                     String lastName, String country,
-                    String postalCode, String phone,
-                    int supportRepId) {
+                    String postalCode, String phone, int supportRepId) {
+        this.CustomerId = customerId;
+        this.FirstName = firstName;
+        this.LastName = lastName;
+        this.Country = country;
+        this.PostalCode = postalCode;
+        this.Phone = phone;
+        this.SupportRepId = supportRepId;
     }
-
-
-
 
     // Getters and Setters
 
-    public int getCustomerId() { return CustomerId; }
 
-    public void setCustomerId(int customerId) { CustomerId = customerId; }
+    public int getCustomerId() {
+        return CustomerId;
+    }
 
-    public String getFirstName() { return FirstName; }
+    public void setCustomerId(int customerId) {
+        CustomerId = customerId;
+    }
 
-    public void setFirstName(String firstName) { FirstName = firstName; }
+    public String getFirstName() {
+        return FirstName;
+    }
 
-    public String getLastName() { return LastName; }
+    public void setFirstName(String firstName) {
+        FirstName = firstName;
+    }
 
-    public void setLastName(String lastName) { LastName = lastName; }
+    public String getLastName() {
+        return LastName;
+    }
 
-    public String getCompany() { return Company; }
+    public void setLastName(String lastName) {
+        LastName = lastName;
+    }
 
-    public void setCompany(String company) { Company = company; }
+    public String getCountry() {
+        return Country;
+    }
 
-    public String getAddress() { return Address; }
+    public void setCountry(String country) {
+        Country = country;
+    }
 
-    public void setAddress(String address) { Address = address; }
+    public String getPostalCode() {
+        return PostalCode;
+    }
 
-    public String getCity() { return City; }
+    public void setPostalCode(String postalCode) {
+        PostalCode = postalCode;
+    }
 
-    public void setCity(String city) { City = city; }
+    public String getPhone() {
+        return Phone;
+    }
 
-    public String getState() { return State; }
+    public void setPhone(String phone) {
+        Phone = phone;
+    }
 
-    public void setState(String state) { State = state; }
+    public int getSupportRepId() {
+        return SupportRepId;
+    }
 
-    public String getCountry() { return Country; }
-
-    public void setCountry(String country) { Country = country; }
-
-    public String getPostalCode() { return PostalCode; }
-
-    public void setPostalCode(String postalCode) { PostalCode = postalCode; }
-
-    public String getPhone() { return Phone; }
-
-    public void setPhone(String phone) { Phone = phone; }
-
-    public String getFax() { return Fax; }
-
-    public void setFax(String fax) { Fax = fax; }
-
-    public String getEmail() { return Email; }
-
-    public void setEmail(String email) { Email = email; }
-    public int getSupportRepId() { return SupportRepId; }
-
-    public void setSupportRepId(int supportRepId) { SupportRepId = supportRepId; }
+    public void setSupportRepId(int supportRepId) {
+        SupportRepId = supportRepId;
+    }
 }

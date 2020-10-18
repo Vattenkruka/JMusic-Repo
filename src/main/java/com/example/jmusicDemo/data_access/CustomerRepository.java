@@ -23,13 +23,16 @@ public class CustomerRepository {
     //CRUD
 
     public ArrayList<Customer> getAllCustomers(){
+
         ArrayList<Customer> customers = new ArrayList<>();
+        String customerQuery = "SELECT CustomerId, FirstName, LastName, Country, PostalCode, Phone, SupportRepId FROM Customer";
+
         // ---
         try{
             // connect
             conn = DriverManager.getConnection(URL);
             PreparedStatement prep =
-                    conn.prepareStatement("SELECT CustomerId, FirstName, LastName, Country, PostalCode, Phone, SupportRepId FROM Customer");
+                    conn.prepareStatement(customerQuery);
             ResultSet set = prep.executeQuery();
             while(set.next()){
                 customers.add( new Customer(
@@ -43,7 +46,8 @@ public class CustomerRepository {
                 ));
             }
             System.out.println("Get all went well!");
-
+            set.close();
+            prep.close();
         }catch(Exception exception){
             System.out.println(exception.toString());
         }
@@ -56,7 +60,8 @@ public class CustomerRepository {
         }
         // ---
         return customers;
-    }/*
+    }
+    /*
      public Customer getSpecificCustomer(String id){
         Customer customer = null;
         // ---
@@ -65,7 +70,7 @@ public class CustomerRepository {
             conn = DriverManager.getConnection(URL);
             PreparedStatement prep =
                     conn.prepareStatement("SELECT CustomerID, Company, FirstName, Phone " +
-                            "FROM customer WHERE Id=?");
+                            "FROM Customer WHERE CustomerId=?");
             prep.setString(1,id);
             ResultSet set = prep.executeQuery();
             while(set.next()){
@@ -92,7 +97,6 @@ public class CustomerRepository {
 
         return customer;
     }
-
     public Boolean addCustomer(Customer customer){
         Boolean success = false;
         try{

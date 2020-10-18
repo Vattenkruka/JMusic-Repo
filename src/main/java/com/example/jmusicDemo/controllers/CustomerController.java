@@ -16,7 +16,8 @@ public class CustomerController {
         return customerRepository.getAllCustomers();
     }
 
-    /*@RequestMapping(value = "/api/customers/{id}", method = RequestMethod.GET)
+    /*
+    @RequestMapping(value = "/api/customers/{id}", method = RequestMethod.GET)
     public Customer getSpecificCustomer(@PathVariable String id){
         return customerRepository.getSpecificCustomer(id);
     }
