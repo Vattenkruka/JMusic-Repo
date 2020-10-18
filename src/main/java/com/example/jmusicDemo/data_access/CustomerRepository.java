@@ -12,22 +12,15 @@ import java.util.ArrayList;
 
 public class CustomerRepository {
     // Setting up the connection object we need.
-    private String URL = "jdbc:sqlite::resource:Chinook_Sqlite.sqlite";
     private Connection conn = null;
 
-    /*
-     Setup methods to manipulate database, using conn = DriverManager.getConnection(URL);
-     and prepared statements.
-    */
-
-    //CRUD
-
+    //A function which Reads all customers
     public ArrayList<Customer> getAllCustomers(){
         ArrayList<Customer> customers = new ArrayList<>();
         // ---
         try{
             // connect
-            conn = DriverManager.getConnection(URL);
+            conn = ConnectionHelper.getConnection();
             PreparedStatement prep =
                     conn.prepareStatement("SELECT CustomerId, FirstName, LastName, Country, PostalCode, Phone, SupportRepId FROM Customer");
             ResultSet set = prep.executeQuery();
@@ -49,7 +42,7 @@ public class CustomerRepository {
         }
         finally {
             try{
-                conn.close();
+                ConnectionHelper.close(conn);
             } catch (Exception exception){
                 System.out.println(exception.toString());
             }
@@ -62,7 +55,7 @@ public class CustomerRepository {
         // ---
         try{
             // connect
-            conn = DriverManager.getConnection(URL);
+            conn = ConnectionHelper.getConnection();
             PreparedStatement prep =
                     conn.prepareStatement("SELECT CustomerID, Company, FirstName, Phone " +
                             "FROM customer WHERE Id=?");
@@ -83,7 +76,7 @@ public class CustomerRepository {
         }
         finally {
             try{
-                conn.close();
+                ConnectionHelper.close(conn);
             } catch (Exception exception){
                 System.out.println(exception.toString());
             }
@@ -97,7 +90,7 @@ public class CustomerRepository {
         Boolean success = false;
         try{
             // connect
-            conn = DriverManager.getConnection(URL);
+            conn = ConnectionHelper.getConnection();
             PreparedStatement prep =
                     conn.prepareStatement("INSERT INTO customer(Id,CompanyName,ContactName,Phone)" +
                             " VALUES(?,?,?,?)");
@@ -116,7 +109,7 @@ public class CustomerRepository {
         }
         finally {
             try{
-                conn.close();
+                ConnectionHelper.close(conn);
             } catch (Exception exception){
                 System.out.println(exception.toString());
             }
@@ -129,7 +122,7 @@ public class CustomerRepository {
         Boolean success = false;
         try{
             // connect
-            conn = DriverManager.getConnection(URL);
+            conn = ConnectionHelper.getConnection();
             PreparedStatement prep =
                     conn.prepareStatement("UPDATE customer SET Id=?, CompanyName=?, ContactName=?,Phone=?" +
                             " WHERE Id=?");
@@ -149,7 +142,7 @@ public class CustomerRepository {
         }
         finally {
             try{
-                conn.close();
+                ConnectionHelper.close(conn);
             } catch (Exception exception){
                 System.out.println(exception.toString());
             }
