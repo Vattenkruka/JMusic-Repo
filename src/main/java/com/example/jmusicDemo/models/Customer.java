@@ -46,6 +46,14 @@ public class Customer {
         SupportRepId = supportRepId;
     }
 
+    public Customer(int customerId, String firstName,
+                    String lastName, String country,
+                    String postalCode, String phone,
+                    int supportRepId) {
+    }
+
+
+
 
     // Getters and Setters
 
