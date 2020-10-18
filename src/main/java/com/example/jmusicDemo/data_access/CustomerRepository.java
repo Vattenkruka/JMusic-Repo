@@ -25,7 +25,7 @@ public class CustomerRepository {
     public ArrayList<Customer> getAllCustomers(){
 
         ArrayList<Customer> customers = new ArrayList<>();
-        String customerQuery = "SELECT CustomerId, FirstName, LastName, Country, PostalCode, Phone, SupportRepId FROM Customer";
+        String customerQuery = "SELECT CustomerId, FirstName, LastName, Country, PostalCode, Phone, Email, SupportRepId FROM Customer";
 
         // ---
         try{
@@ -42,6 +42,7 @@ public class CustomerRepository {
                         set.getString("Country"),
                         set.getString("PostalCode"),
                         set.getString("Phone"),
+                        set.getString("Email"),
                         set.getInt("SupportRepId")
                 ));
             }
@@ -61,24 +62,29 @@ public class CustomerRepository {
         // ---
         return customers;
     }
-    /*
      public Customer getSpecificCustomer(String id){
         Customer customer = null;
-        // ---
+        String specificCustomerQuery = "SELECT CustomerId, FirstName, LastName, Country, " +
+                "PostalCode, Phone, Email, SupportRepId FROM Customer WHERE CustomerId=?";
+
+         // ---
         try{
             // connect
             conn = DriverManager.getConnection(URL);
             PreparedStatement prep =
-                    conn.prepareStatement("SELECT CustomerID, Company, FirstName, Phone " +
-                            "FROM Customer WHERE CustomerId=?");
+                    conn.prepareStatement(specificCustomerQuery);
             prep.setString(1,id);
             ResultSet set = prep.executeQuery();
             while(set.next()){
                 customer = new Customer(
-                        set.getString("CustomerID"),
-                        set.getString("Company"),
+                        set.getInt("CustomerId"),
                         set.getString("FirstName"),
-                        set.getString("Phone")
+                        set.getString("LastName"),
+                        set.getString("Country"),
+                        set.getString("PostalCode"),
+                        set.getString("Phone"),
+                        set.getString("Email"),
+                        set.getInt("SupportRepId")
                 );
             }
             System.out.println("Get specific went well!");
@@ -99,16 +105,21 @@ public class CustomerRepository {
     }
     public Boolean addCustomer(Customer customer){
         Boolean success = false;
+        String addCustomerQuery = "INSERT INTO customer(FirstName, LastName, Country, PostalCode, Phone, Email, SupportRepId) " +
+                "VALUES(?,?,?,?,?,?,?)";
+
         try{
             // connect
             conn = DriverManager.getConnection(URL);
             PreparedStatement prep =
-                    conn.prepareStatement("INSERT INTO customer(Id,CompanyName,ContactName,Phone)" +
-                            " VALUES(?,?,?,?)");
-            prep.setString(1,customer.getCustomerId());
-            prep.setString(2,customer.getCompanyName());
-            prep.setString(3,customer.getContactName());
-            prep.setString(4,customer.getPhone());
+                    conn.prepareStatement(addCustomerQuery);
+            prep.setString(1,customer.getFirstName());
+            prep.setString(2,customer.getLastName());
+            prep.setString(3,customer.getCountry());
+            prep.setString(4,customer.getPostalCode());
+            prep.setString(5,customer.getPhone());
+            prep.setString(6,customer.getEmail());
+            prep.setInt(7,customer.randomGeneratedSupportId());
 
             int result = prep.executeUpdate();
             success = (result != 0); // if res = 1; true
@@ -129,6 +140,7 @@ public class CustomerRepository {
         return success;
     }
 
+    /*
     public Boolean updateCustomer(Customer customer){
         Boolean success = false;
         try{

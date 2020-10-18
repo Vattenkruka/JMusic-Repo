@@ -1,5 +1,8 @@
 package com.example.jmusicDemo.models;
 
+import java.lang.Math;
+import java.util.Random;
+
 // Employee, Customer, Invoice, InvoiceLine
 // Track, Genre, osv
 
@@ -7,84 +10,67 @@ package com.example.jmusicDemo.models;
 
 public class Customer {
 
-    private int CustomerId;
-    private String FirstName;
-    private String LastName;
-    private String Country;
-    private String PostalCode;
-    private String Phone;
-    private int SupportRepId;
+    private int customerId;
+    private String firstName;
+    private String lastName;
+    private String country;
+    private String postalCode;
+    private String phone;
+    private String email;
+    private int supportRepId;
 
     //Constructor for all elements
 
     public Customer(int customerId, String firstName,
                     String lastName, String country,
-                    String postalCode, String phone, int supportRepId) {
-        this.CustomerId = customerId;
-        this.FirstName = firstName;
-        this.LastName = lastName;
-        this.Country = country;
-        this.PostalCode = postalCode;
-        this.Phone = phone;
-        this.SupportRepId = supportRepId;
+                    String postalCode, String phone,
+                    String email, int supportRepId) {
+        this.customerId = customerId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.country = country;
+        this.postalCode = postalCode;
+        this.phone = phone;
+        this.email = email;
+        this.supportRepId = supportRepId;
     }
+
 
     // Getters and Setters
 
+    public int getCustomerId() { return customerId; }
 
-    public int getCustomerId() {
-        return CustomerId;
-    }
+    public void setCustomerId(int customerId) { this.customerId = customerId; }
 
-    public void setCustomerId(int customerId) {
-        CustomerId = customerId;
-    }
+    public String getFirstName() { return firstName; }
 
-    public String getFirstName() {
-        return FirstName;
-    }
+    public void setFirstName(String firstName) { this.firstName = firstName; }
 
-    public void setFirstName(String firstName) {
-        FirstName = firstName;
-    }
+    public String getLastName() { return lastName; }
 
-    public String getLastName() {
-        return LastName;
-    }
+    public void setLastName(String lastName) { this.lastName = lastName; }
 
-    public void setLastName(String lastName) {
-        LastName = lastName;
-    }
+    public String getCountry() { return country; }
 
-    public String getCountry() {
-        return Country;
-    }
+    public void setCountry(String country) { this.country = country; }
 
-    public void setCountry(String country) {
-        Country = country;
-    }
+    public String getPostalCode() { return postalCode; }
 
-    public String getPostalCode() {
-        return PostalCode;
-    }
+    public void setPostalCode(String postalCode) { this.postalCode = postalCode; }
 
-    public void setPostalCode(String postalCode) {
-        PostalCode = postalCode;
-    }
+    public String getPhone() { return phone; }
 
-    public String getPhone() {
-        return Phone;
-    }
+    public void setPhone(String phone) { this.phone = phone; }
 
-    public void setPhone(String phone) {
-        Phone = phone;
-    }
+    public String getEmail() { return email; }
 
-    public int getSupportRepId() {
-        return SupportRepId;
-    }
+    public void setEmail(String email) { this.email = email; }
 
-    public void setSupportRepId(int supportRepId) {
-        SupportRepId = supportRepId;
+    public int getSupportRepId() { return supportRepId; }
+
+    public void setSupportRepId(int supportRepId) { this.supportRepId = supportRepId; }
+
+    public int randomGeneratedSupportId(){
+        return (int) (1 + Math.random() * 5);
     }
 }
