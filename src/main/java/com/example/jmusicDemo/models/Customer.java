@@ -35,6 +35,11 @@ public class Customer {
         this.supportRepId = supportRepId;
     }
 
+    public Customer(int customerId, String country) {
+        this.customerId = customerId;
+        this.country = country;
+    }
+
 
     // Getters and Setters
 
