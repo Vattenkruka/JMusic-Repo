@@ -20,9 +20,9 @@ public class CustomerRepository {
         ArrayList<Customer> customers = new ArrayList<>();
         String customerQuery = "SELECT CustomerId, FirstName, LastName, Country, PostalCode, Phone, Email, SupportRepId FROM Customer";
 
-        // ---
+
         try{
-            // connect
+
             conn = ConnectionHelper.getConnection();
             PreparedStatement prep =
                     conn.prepareStatement(customerQuery);
@@ -52,7 +52,7 @@ public class CustomerRepository {
                 System.out.println(exception.toString());
             }
         }
-        // ---
+
         return customers;
     }
      public Customer getSpecificCustomer(String id){
@@ -60,9 +60,9 @@ public class CustomerRepository {
         String specificCustomerQuery = "SELECT CustomerId, FirstName, LastName, Country, " +
                 "PostalCode, Phone, Email, SupportRepId FROM Customer WHERE CustomerId=?";
 
-         // ---
+
         try{
-            // connect
+
             conn = ConnectionHelper.getConnection();
             PreparedStatement prep =
                     conn.prepareStatement(specificCustomerQuery);
@@ -92,7 +92,7 @@ public class CustomerRepository {
                 System.out.println(exception.toString());
             }
         }
-        // ---
+
 
         return customer;
     }
@@ -102,7 +102,7 @@ public class CustomerRepository {
                 "VALUES(?,?,?,?,?,?,?)";
 
         try{
-            // connect
+
             conn = ConnectionHelper.getConnection();
             PreparedStatement prep =
                     conn.prepareStatement(addCustomerQuery);
@@ -129,27 +129,32 @@ public class CustomerRepository {
                 System.out.println(exception.toString());
             }
         }
-        // ---
+
         return success;
     }
 
-    /*
+
     public Boolean updateCustomer(Customer customer){
         Boolean success = false;
         try{
-            // connect
+
             conn = ConnectionHelper.getConnection();
             PreparedStatement prep =
-                    conn.prepareStatement("UPDATE customer SET Id=?, CompanyName=?, ContactName=?,Phone=?" +
-                            " WHERE Id=?");
-            prep.setString(1,customer.getCustomerId());
-            prep.setString(2,customer.getCompanyName());
-            prep.setString(3,customer.getContactName());
-            prep.setString(4,customer.getPhone());
-            prep.setString(5,customer.getCustomerId());
+                    conn.prepareStatement("UPDATE customer SET FirstName=?, LastName=?,Country=?, PostalCode=?, Phone=?, Email=?, SupportRepId=?" +
+                            " WHERE CustomerId=?");
+            prep.setString(1,customer.getFirstName()); //Maybe refactor this duplication of code
+            prep.setString(2,customer.getLastName());
+            prep.setString(3,customer.getCountry());
+            prep.setString(4, customer.getPostalCode());
+            prep.setString(5,customer.getPhone());
+            prep.setString(6,customer.getEmail());
+            prep.setInt(7,customer.getSupportRepId());
+            prep.setInt(8,customer.getCustomerId());
+
+
 
             int result = prep.executeUpdate();
-            success = (result != 0); // if res = 1; true
+            success = (result != 0); // if result = 1; true
 
             System.out.println("Update went well!");
 
@@ -163,10 +168,10 @@ public class CustomerRepository {
                 System.out.println(exception.toString());
             }
         }
-        // ---
+
         return success;
     }
 
- */
+
 }
 
