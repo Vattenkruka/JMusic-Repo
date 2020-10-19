@@ -35,11 +35,12 @@ public class Customer {
         this.supportRepId = supportRepId;
     }
 
-    public Customer(int customerId, String country) {
-        this.customerId = customerId;
-        this.country = country;
-    }
+    public Customer(String firstName, String lastName,
+                    double total) {
 
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
 
     // Getters and Setters
 

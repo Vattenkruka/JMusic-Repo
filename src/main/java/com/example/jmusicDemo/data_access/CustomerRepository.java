@@ -9,7 +9,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.TreeMap;
 
 public class CustomerRepository {
     // Setting up the connection object we need.
@@ -169,8 +168,6 @@ public class CustomerRepository {
         return customerCountry;
     }
 
-
-
     public Boolean updateCustomer(Customer customer){
         Boolean success = false;
         try{
@@ -206,6 +203,46 @@ public class CustomerRepository {
         }
 
         return success;
+    }
+
+    public LinkedHashMap<String, Double> getHighestSpenders(){
+
+        LinkedHashMap<String, Double> highestSpenders = new LinkedHashMap<>();
+        String invoiceTotalQuery =
+                "SELECT  customer.Firstname, customer.lastName, round( SUM(invoice.Total),2)\n" +
+                "AS total FROM Customer customer\n" +
+                "JOIN Invoice invoice ON customer.CustomerId = invoice.CustomerId\n" +
+                "GROUP BY customer.customerId\n" +
+                "ORDER BY total DESC;";
+
+        // ---
+        try{
+            // connect
+            conn = ConnectionHelper.getConnection();
+            PreparedStatement prep =
+                    conn.prepareStatement(invoiceTotalQuery);
+            ResultSet set = prep.executeQuery();
+            while(set.next()){
+                highestSpenders.put(
+                        set.getString("LastName"),
+                        set.getDouble("total")
+                );
+            }
+            System.out.println("Get all went well!");
+            set.close();
+            prep.close();
+        }catch(Exception exception){
+            System.out.println(exception.toString());
+        }
+        finally {
+            try{
+                ConnectionHelper.close(conn);
+            } catch (Exception exception){
+                System.out.println(exception.toString());
+            }
+        }
+        // ---
+        return highestSpenders;
     }
 
 

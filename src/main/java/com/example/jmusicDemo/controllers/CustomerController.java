@@ -37,4 +37,8 @@ public class CustomerController {
         return customerRepository.updateCustomer(customer);
     }
 
+    @RequestMapping(value = "/api/invoice/total", method = RequestMethod.GET)
+    public LinkedHashMap<String, Double> getHighestSpenders(){
+        return customerRepository.getHighestSpenders();
+    }
 }
