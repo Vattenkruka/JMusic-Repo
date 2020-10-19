@@ -10,9 +10,9 @@ import java.util.ArrayList;
 
 public class ArtistRepository {
 
-    public static ArrayList<Artist> getRandomArtists(){
+    public static ArrayList<Artist> getRandomArtists(int amountOfArtists){
 
-        var artistList = new ArrayList<Artist>(int amountOfArtists);
+        var artistList = new ArrayList<Artist> ();
         Connection conn = null;
         String sql = "SELECT ArtistId, Name FROM Artist ORDER BY RANDOM() LIMIT?";
 
