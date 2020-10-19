@@ -5,10 +5,11 @@ package com.example.jmusicDemo.data_access;
 import com.example.jmusicDemo.models.Customer;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.TreeMap;
 
 public class CustomerRepository {
     // Setting up the connection object we need.
@@ -133,10 +134,10 @@ public class CustomerRepository {
         return success;
     }
 
-    public ArrayList<Customer> getCustomersByCountry(){
+    public LinkedHashMap<String, Integer> getCustomersByCountry(){
 
-        ArrayList<Customer> customerCountry = new ArrayList<>();
-        String customerCountryQuery = "SELECT  Country, Count(*) FROM Customer GROUP BY Country ORDER BY count(CustomerId) DESC";
+        LinkedHashMap<String,Integer> customerCountry = new LinkedHashMap<>();
+        String customerCountryQuery = "SELECT DISTINCT Country, Count(*) FROM Customer GROUP BY Country ORDER BY count(CustomerId) DESC";
 
         // ---
         try{
@@ -146,10 +147,10 @@ public class CustomerRepository {
                     conn.prepareStatement(customerCountryQuery);
             ResultSet set = prep.executeQuery();
             while(set.next()){
-                customerCountry.add( new Customer(
-                        set.getInt("CustomerId"),
-                        set.getString("Country")
-                ));
+                customerCountry.put(
+                        set.getString("Country"),
+                        set.getInt("Count(*)")
+                );
             }
             System.out.println("Get all went well!");
             set.close();

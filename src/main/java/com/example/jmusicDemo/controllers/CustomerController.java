@@ -5,6 +5,8 @@ import com.example.jmusicDemo.models.Customer;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
 
 @RestController
 public class CustomerController {
@@ -26,8 +28,8 @@ public class CustomerController {
     }
 
     @RequestMapping(value = "/api/popular/country", method = RequestMethod.GET)
-    public ArrayList<Customer> getCustomersByCountry(){
-        return customerRepository.getAllCustomers();
+    public LinkedHashMap<String, Integer> getCustomersByCountry(){
+        return customerRepository.getCustomersByCountry();
     }
 
     @RequestMapping(value = "/api/customers", method = RequestMethod.PUT)
