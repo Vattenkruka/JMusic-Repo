@@ -133,6 +133,41 @@ public class CustomerRepository {
         return success;
     }
 
+    public ArrayList<Customer> getCustomersByCountry(){
+
+        ArrayList<Customer> customerCountry = new ArrayList<>();
+        String customerCountryQuery = "SELECT  Country, Count(*) FROM Customer GROUP BY Country ORDER BY count(CustomerId) DESC";
+
+        // ---
+        try{
+            // connect
+            conn = DriverManager.getConnection(URL);
+            PreparedStatement prep =
+                    conn.prepareStatement(customerCountryQuery);
+            ResultSet set = prep.executeQuery();
+            while(set.next()){
+                customerCountry.add( new Customer(
+                        set.getInt("CustomerId"),
+                        set.getString("Country")
+                ));
+            }
+            System.out.println("Get all went well!");
+            set.close();
+            prep.close();
+        }catch(Exception exception){
+            System.out.println(exception.toString());
+        }
+        finally {
+            try{
+                conn.close();
+            } catch (Exception exception){
+                System.out.println(exception.toString());
+            }
+        }
+        // ---
+        return customerCountry;
+    }
+
     /*
     public Boolean updateCustomer(Customer customer){
         Boolean success = false;

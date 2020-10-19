@@ -24,6 +24,10 @@ public class CustomerController {
     public Boolean addCustomer(@RequestBody Customer customer){
         return customerRepository.addCustomer(customer);
     }
+    @RequestMapping(value = "/api/popular/country", method = RequestMethod.GET)
+    public ArrayList<Customer> getCustomersByCountry(){
+        return customerRepository.getAllCustomers();
+    }
     /*
     @RequestMapping(value = "/api/customers", method = RequestMethod.PUT)
     public Boolean updateCustomer(@RequestBody Customer customer){
