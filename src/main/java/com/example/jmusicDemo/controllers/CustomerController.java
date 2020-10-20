@@ -2,6 +2,8 @@ package com.example.jmusicDemo.controllers;
 
 import com.example.jmusicDemo.data_access.CustomerRepository;
 import com.example.jmusicDemo.models.Customer;
+import com.example.jmusicDemo.models.Genre;
+import com.example.jmusicDemo.models.PopularGenre;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -27,7 +29,7 @@ public class CustomerController {
         return customerRepository.addCustomer(customer);
     }
 
-    @RequestMapping(value = "/api/popular/country", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/customers/popular/country", method = RequestMethod.GET)
     public LinkedHashMap<String, Integer> getCustomersByCountry(){
         return customerRepository.getCustomersByCountry();
     }
@@ -37,8 +39,13 @@ public class CustomerController {
         return customerRepository.updateCustomer(customer);
     }
 
-    @RequestMapping(value = "/api/invoice/total", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/customers/invoice/total", method = RequestMethod.GET)
     public LinkedHashMap<String, Double> getHighestSpenders(){
         return customerRepository.getHighestSpenders();
+    }
+
+    @RequestMapping(value = "/api/customers/{id}/favorite/genre", method = RequestMethod.GET)
+    public ArrayList<PopularGenre> getMostPopularGenre(@PathVariable String id){
+        return customerRepository.getMostPopularGenre(id);
     }
 }
