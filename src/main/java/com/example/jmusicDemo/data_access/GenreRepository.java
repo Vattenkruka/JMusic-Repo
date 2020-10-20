@@ -23,7 +23,7 @@ public class GenreRepository {
                 ResultSet resultSet = preparedStatement.executeQuery();
 
                 while(resultSet.next()){
-                    genreList.add((new Genre(resultSet.getInt("GenreId"),resultSet.getString("Name"))));
+                    genreList.add(new Genre(resultSet.getInt("GenreId"),resultSet.getString("Name")));
                 }
             }
             catch(SQLException ex){
