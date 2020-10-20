@@ -3,12 +3,15 @@ package com.example.jmusicDemo.data_access;
 
 
 import com.example.jmusicDemo.models.Customer;
+import com.example.jmusicDemo.models.Genre;
+import com.example.jmusicDemo.models.PopularGenre;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 
 public class CustomerRepository {
     // Setting up the connection object we need.
@@ -209,10 +212,10 @@ public class CustomerRepository {
 
         LinkedHashMap<String, Double> highestSpenders = new LinkedHashMap<>();
         String invoiceTotalQuery =
-                "SELECT  customer.Firstname, customer.lastName, round( SUM(invoice.Total),2)\n" +
-                "AS total FROM Customer customer\n" +
-                "JOIN Invoice invoice ON customer.CustomerId = invoice.CustomerId\n" +
-                "GROUP BY customer.customerId\n" +
+                "SELECT  customer.Firstname, customer.LastName, round( SUM(invoice.Total),2)" +
+                "AS total FROM Customer customer" +
+                "JOIN Invoice invoice ON customer.CustomerId = invoice.CustomerId" +
+                "GROUP BY customer.customerId" +
                 "ORDER BY total DESC;";
 
         // ---
@@ -223,10 +226,9 @@ public class CustomerRepository {
                     conn.prepareStatement(invoiceTotalQuery);
             ResultSet set = prep.executeQuery();
             while(set.next()){
-                highestSpenders.put(
-                        set.getString("LastName"),
-                        set.getDouble("total")
-                );
+                String customerName = set.getString("FirstName") + " " + set.getString("LastName");
+
+                highestSpenders.put(customerName,set.getDouble("total"));
             }
             System.out.println("Get all went well!");
             set.close();
@@ -244,6 +246,58 @@ public class CustomerRepository {
         // ---
         return highestSpenders;
     }
+
+    public ArrayList<PopularGenre> getMostPopularGenre(String id) {
+
+        ArrayList<PopularGenre> popularGenre = new ArrayList<>();
+        String popularGenreQuery =
+                "SELECT Customer.FirstName, Customer.LastName, Genre.Name, count(Track.GenreId) mostPopular " +
+                        "FROM Customer " +
+                        "JOIN Invoice " +
+                        "ON Customer.CustomerId = Invoice.CustomerId " +
+                        "JOIN InvoiceLine " +
+                        "ON Invoice.InvoiceId = InvoiceLine.InvoiceId " +
+                        "JOIN Track " +
+                        "ON InvoiceLine.TrackId = Track.TrackId " +
+                        "JOIN Genre " +
+                        "ON Track.GenreId = Genre.GenreId " +
+                        "WHERE Customer.CustomerId=? " +
+                        "GROUP BY Genre.GenreId " +
+                        "ORDER BY mostPopular DESC;";
+
+        try {
+            conn = ConnectionHelper.getConnection();
+            PreparedStatement prep =
+                    conn.prepareStatement(popularGenreQuery);
+            prep.setString(1,id);
+            ResultSet set = prep.executeQuery();
+            while (set.next()) {
+                popularGenre.add(new PopularGenre(
+                        set.getString("FirstName"),
+                        set.getString("LastName"),
+                        set.getString("Name"),
+                        set.getInt("mostPopular")));
+            }
+
+            System.out.println("Get all went well!");
+            popularGenre = PopularGenre.compareGenre(popularGenre);
+            
+            set.close();
+            prep.close();
+        }catch(Exception exception){
+            System.out.println(exception.toString());
+        }
+        finally {
+            try{
+                ConnectionHelper.close(conn);
+            } catch (Exception exception){
+                System.out.println(exception.toString());
+            }
+        }
+
+        return popularGenre;
+    }
+
 
 
 }

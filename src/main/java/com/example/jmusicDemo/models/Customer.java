@@ -35,13 +35,6 @@ public class Customer {
         this.supportRepId = supportRepId;
     }
 
-    public Customer(String firstName, String lastName,
-                    double total) {
-
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
-
     // Getters and Setters
 
     public int getCustomerId() { return customerId; }
