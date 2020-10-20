@@ -12,9 +12,10 @@ public class ViewController {
 
     @GetMapping(value = "/")
     public String home(Model model){
-        model.addAttribute("artistlist", ArtistRepository.getRandomArtists(5));
-        model.addAttribute("genreList", GenreRepository.getRandomGenres(5));
-        model.addAttribute("trackList", TrackRepository.getRandomTracks(5));
+        int amount = 5;
+        model.addAttribute("artistList", ArtistRepository.getRandomArtists(amount));
+        model.addAttribute("genreList", GenreRepository.getRandomGenres(amount));
+        model.addAttribute("trackList", TrackRepository.getRandomTracks(amount));
         return "home";
     }
 
