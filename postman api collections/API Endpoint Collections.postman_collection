@@ -1,0 +1,214 @@
+{
+	"info": {
+		"_postman_id": "38ae0746-6607-4ff7-ab30-a774efa8f180",
+		"name": "API Endpoint Collections",
+		"description": "API for tracking endpoints used in the jMusicDemo application\r\n\r\n",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:8080/api/customers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/customers/",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"customers",
+						""
+					]
+				},
+				"description": "Endpoint to view all customers  "
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/api/customers/find/{id}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/customers/find/{id}",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"customers",
+						"find",
+						"{id}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/api/customers/add",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "  {\r\n        \"customerId\": 66,\r\n        \"firstName\": \"Eddie\",\r\n        \"lastName\": \"Van Halen\",\r\n        \"country\": \"USA\",\r\n        \"postalCode\": \"3122\",\r\n        \"phone\": \"+54 (55) 24242-15567\",\r\n        \"email\": \"legend@yahoo.com\",\r\n        \"supportRepId\": 3\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/customers/add",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"customers",
+						"add"
+					]
+				},
+				"description": "Endpoint to add/create new customer"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/api/customers/country",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "  {\r\n        \"customerId\": 66,\r\n        \"firstName\": \"Eddie\",\r\n        \"lastName\": \"Van Halen\",\r\n        \"country\": \"USA\",\r\n        \"postalCode\": \"3122\",\r\n        \"phone\": \"+54 (55) 24242-15567\",\r\n        \"email\": \"legend@yahoo.com\",\r\n        \"supportRepId\": 3\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/customers/country",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"customers",
+						"country"
+					]
+				},
+				"description": "Endpoint to see number of customers in each countries"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/api/customers/update",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "  {\r\n        \"customerId\": 66,\r\n        \"firstName\": \"Eddie\",\r\n        \"lastName\": \"Murphy\",\r\n        \"country\": \"USA\",\r\n        \"postalCode\": \"3122\",\r\n        \"phone\": \"+54 (55) 24242-15567\",\r\n        \"email\": \"legend@yahoo.com\",\r\n        \"supportRepId\": 3\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/customers/update",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"customers",
+						"update"
+					]
+				},
+				"description": "Endpoint to update customer information"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/api/customers/invoice/total",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "  {\r\n        \"customerId\": 66,\r\n        \"firstName\": \"Eddie\",\r\n        \"lastName\": \"Murphy\",\r\n        \"country\": \"USA\",\r\n        \"postalCode\": \"3122\",\r\n        \"phone\": \"+54 (55) 24242-15567\",\r\n        \"email\": \"legend@yahoo.com\",\r\n        \"supportRepId\": 3\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/customers/invoice/total",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"customers",
+						"invoice",
+						"total"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/api/customers/{id}/favorite/genre",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "  {\r\n        \"customerId\": 66,\r\n        \"firstName\": \"Eddie\",\r\n        \"lastName\": \"Murphy\",\r\n        \"country\": \"USA\",\r\n        \"postalCode\": \"3122\",\r\n        \"phone\": \"+54 (55) 24242-15567\",\r\n        \"email\": \"legend@yahoo.com\",\r\n        \"supportRepId\": 3\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/customers/56/favorite/genre",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"customers",
+						"56",
+						"favorite",
+						"genre"
+					]
+				},
+				"description": "Endpoit for checking specific customer's favorite genre"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

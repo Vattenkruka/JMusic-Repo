@@ -2,13 +2,11 @@ package com.example.jmusicDemo.controllers;
 
 import com.example.jmusicDemo.data_access.CustomerRepository;
 import com.example.jmusicDemo.models.Customer;
-import com.example.jmusicDemo.models.Genre;
 import com.example.jmusicDemo.models.PopularGenre;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.List;
 
 @RestController
 public class CustomerController {
@@ -16,36 +14,37 @@ public class CustomerController {
 
     // Setup endpoints with @RequestMappings, extract id with @PathVariable
     @RequestMapping(value = "/api/customers", method = RequestMethod.GET)
-    public ArrayList<Customer> getAllCustomers(){
+    public ArrayList<Customer> getAllCustomers() {
         return customerRepository.getAllCustomers();
     }
 
-    @RequestMapping(value = "/api/customers/{id}", method = RequestMethod.GET)
-    public Customer getSpecificCustomer(@PathVariable String id){
+    @RequestMapping(value = "/api/customers/find/{id}", method = RequestMethod.GET)
+    public Customer getSpecificCustomer(@PathVariable String id) {
         return customerRepository.getSpecificCustomer(id);
     }
-    @RequestMapping(value = "/api/customers", method = RequestMethod.POST)
-    public Boolean addCustomer(@RequestBody Customer customer){
+
+    @RequestMapping(value = "/api/customers/add", method = RequestMethod.POST)
+    public Boolean addCustomer(@RequestBody Customer customer) {
         return customerRepository.addCustomer(customer);
     }
 
-    @RequestMapping(value = "/api/customers/popular/country", method = RequestMethod.GET)
-    public LinkedHashMap<String, Integer> getCustomersByCountry(){
+    @RequestMapping(value = "/api/customers/country", method = RequestMethod.GET)
+    public LinkedHashMap<String, Integer> getCustomersByCountry() {
         return customerRepository.getCustomersByCountry();
     }
 
-    @RequestMapping(value = "/api/customers", method = RequestMethod.PUT)
-    public Boolean updateCustomer(@RequestBody Customer customer){
+    @RequestMapping(value = "/api/customers/update", method = RequestMethod.PUT)
+    public Boolean updateCustomer(@RequestBody Customer customer) {
         return customerRepository.updateCustomer(customer);
     }
 
     @RequestMapping(value = "/api/customers/invoice/total", method = RequestMethod.GET)
-    public LinkedHashMap<String, Double> getHighestSpenders(){
+    public LinkedHashMap<String, Double> getHighestSpenders() {
         return customerRepository.getHighestSpenders();
     }
 
     @RequestMapping(value = "/api/customers/{id}/favorite/genre", method = RequestMethod.GET)
-    public ArrayList<PopularGenre> getMostPopularGenre(@PathVariable String id){
+    public ArrayList<PopularGenre> getMostPopularGenre(@PathVariable String id) {
         return customerRepository.getMostPopularGenre(id);
     }
 }

@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class TrackRepository {
-    public static ArrayList<Track> getRandomTracks(int amountOfTracks){
+    public static ArrayList<Track> getRandomTracks(int amountOfTracks) {
         var trackList = new ArrayList<Track>();
         Connection conn = null;
         String sql = "SELECT TrackId,Name FROM Track ORDER BY RANDOM() LIMIT?";
@@ -21,14 +21,12 @@ public class TrackRepository {
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            while(resultSet.next()){
+            while (resultSet.next()) {
                 trackList.add(new Track(resultSet.getInt("TrackId"), resultSet.getString("Name")));
             }
-        }
-        catch(SQLException ex){
+        } catch (SQLException ex) {
             ex.printStackTrace();
-        }
-        finally {
+        } finally {
             ConnectionHelper.close(conn);
         }
         return trackList;

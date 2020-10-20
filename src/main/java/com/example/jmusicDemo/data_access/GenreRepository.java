@@ -10,28 +10,26 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class GenreRepository {
-    public static ArrayList<Genre> getRandomGenres(int amountOfGenres){
+    public static ArrayList<Genre> getRandomGenres(int amountOfGenres) {
         var genreList = new ArrayList<Genre>();
-            Connection conn = null;
-            String sql = "SELECT GenreId, Name FROM Genre ORDER BY RANDOM() LIMIT?";
+        Connection conn = null;
+        String sql = "SELECT GenreId, Name FROM Genre ORDER BY RANDOM() LIMIT?";
 
-            try{
-                conn = ConnectionHelper.getConnection();
-                PreparedStatement preparedStatement = conn.prepareStatement(sql);
-                preparedStatement.setInt(1,amountOfGenres);
+        try {
+            conn = ConnectionHelper.getConnection();
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setInt(1, amountOfGenres);
 
-                ResultSet resultSet = preparedStatement.executeQuery();
+            ResultSet resultSet = preparedStatement.executeQuery();
 
-                while(resultSet.next()){
-                    genreList.add(new Genre(resultSet.getInt("GenreId"),resultSet.getString("Name")));
-                }
+            while (resultSet.next()) {
+                genreList.add(new Genre(resultSet.getInt("GenreId"), resultSet.getString("Name")));
             }
-            catch(SQLException ex){
-                ex.printStackTrace();
-            }
-            finally {
-                ConnectionHelper.close(conn);
-            }
-            return genreList;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            ConnectionHelper.close(conn);
+        }
+        return genreList;
     }
 }

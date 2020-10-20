@@ -3,7 +3,6 @@ package com.example.jmusicDemo.data_access;
 
 
 import com.example.jmusicDemo.models.Customer;
-import com.example.jmusicDemo.models.Genre;
 import com.example.jmusicDemo.models.PopularGenre;
 
 import java.sql.Connection;
@@ -11,27 +10,26 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.List;
 
 public class CustomerRepository {
     // Setting up the connection object we need.
     private Connection conn = null;
 
     //A function which Reads all customers
-    public ArrayList<Customer> getAllCustomers(){
+    public ArrayList<Customer> getAllCustomers() {
 
         ArrayList<Customer> customers = new ArrayList<>();
         String customerQuery = "SELECT CustomerId, FirstName, LastName, Country, PostalCode, Phone, Email, SupportRepId FROM Customer";
 
 
-        try{
+        try {
 
             conn = ConnectionHelper.getConnection();
             PreparedStatement prep =
                     conn.prepareStatement(customerQuery);
             ResultSet set = prep.executeQuery();
-            while(set.next()){
-                customers.add( new Customer(
+            while (set.next()) {
+                customers.add(new Customer(
                         set.getInt("CustomerId"),
                         set.getString("FirstName"),
                         set.getString("LastName"),
@@ -45,33 +43,33 @@ public class CustomerRepository {
             System.out.println("Get all went well!");
             set.close();
             prep.close();
-        }catch(Exception exception){
+        } catch (Exception exception) {
             System.out.println(exception.toString());
-        }
-        finally {
-            try{
+        } finally {
+            try {
                 ConnectionHelper.close(conn);
-            } catch (Exception exception){
+            } catch (Exception exception) {
                 System.out.println(exception.toString());
             }
         }
 
         return customers;
     }
-     public Customer getSpecificCustomer(String id){
+
+    public Customer getSpecificCustomer(String id) {
         Customer customer = null;
         String specificCustomerQuery = "SELECT CustomerId, FirstName, LastName, Country, " +
                 "PostalCode, Phone, Email, SupportRepId FROM Customer WHERE CustomerId=?";
 
 
-        try{
+        try {
 
             conn = ConnectionHelper.getConnection();
             PreparedStatement prep =
                     conn.prepareStatement(specificCustomerQuery);
-            prep.setString(1,id);
+            prep.setString(1, id);
             ResultSet set = prep.executeQuery();
-            while(set.next()){
+            while (set.next()) {
                 customer = new Customer(
                         set.getInt("CustomerId"),
                         set.getString("FirstName"),
@@ -85,13 +83,12 @@ public class CustomerRepository {
             }
             System.out.println("Get specific went well!");
 
-        }catch(Exception exception){
+        } catch (Exception exception) {
             System.out.println(exception.toString());
-        }
-        finally {
-            try{
+        } finally {
+            try {
                 ConnectionHelper.close(conn);
-            } catch (Exception exception){
+            } catch (Exception exception) {
                 System.out.println(exception.toString());
             }
         }
@@ -99,36 +96,36 @@ public class CustomerRepository {
 
         return customer;
     }
-    public Boolean addCustomer(Customer customer){
+
+    public Boolean addCustomer(Customer customer) {
         Boolean success = false;
         String addCustomerQuery = "INSERT INTO customer(FirstName, LastName, Country, PostalCode, Phone, Email, SupportRepId) " +
                 "VALUES(?,?,?,?,?,?,?)";
 
-        try{
+        try {
 
             conn = ConnectionHelper.getConnection();
             PreparedStatement prep =
                     conn.prepareStatement(addCustomerQuery);
-            prep.setString(1,customer.getFirstName());
-            prep.setString(2,customer.getLastName());
-            prep.setString(3,customer.getCountry());
-            prep.setString(4,customer.getPostalCode());
-            prep.setString(5,customer.getPhone());
-            prep.setString(6,customer.getEmail());
-            prep.setInt(7,customer.randomGeneratedSupportId());
+            prep.setString(1, customer.getFirstName());
+            prep.setString(2, customer.getLastName());
+            prep.setString(3, customer.getCountry());
+            prep.setString(4, customer.getPostalCode());
+            prep.setString(5, customer.getPhone());
+            prep.setString(6, customer.getEmail());
+            prep.setInt(7, customer.randomGeneratedSupportId());
 
             int result = prep.executeUpdate();
             success = (result != 0); // if res = 1; true
 
             System.out.println("Add went well!");
 
-        }catch(Exception exception){
+        } catch (Exception exception) {
             System.out.println(exception.toString());
-        }
-        finally {
-            try{
+        } finally {
+            try {
                 ConnectionHelper.close(conn);
-            } catch (Exception exception){
+            } catch (Exception exception) {
                 System.out.println(exception.toString());
             }
         }
@@ -136,19 +133,18 @@ public class CustomerRepository {
         return success;
     }
 
-    public LinkedHashMap<String, Integer> getCustomersByCountry(){
+    public LinkedHashMap<String, Integer> getCustomersByCountry() {
 
-        LinkedHashMap<String,Integer> customerCountry = new LinkedHashMap<>();
+        LinkedHashMap<String, Integer> customerCountry = new LinkedHashMap<>();
         String customerCountryQuery = "SELECT DISTINCT Country, Count(*) FROM Customer GROUP BY Country ORDER BY count(CustomerId) DESC";
 
-        // ---
-        try{
+        try {
             // connect
             conn = ConnectionHelper.getConnection();
             PreparedStatement prep =
                     conn.prepareStatement(customerCountryQuery);
             ResultSet set = prep.executeQuery();
-            while(set.next()){
+            while (set.next()) {
                 customerCountry.put(
                         set.getString("Country"),
                         set.getInt("Count(*)")
@@ -157,36 +153,34 @@ public class CustomerRepository {
             System.out.println("Get all went well!");
             set.close();
             prep.close();
-        }catch(Exception exception){
+        } catch (Exception exception) {
             System.out.println(exception.toString());
-        }
-        finally {
-            try{
+        } finally {
+            try {
                 ConnectionHelper.close(conn);
-            } catch (Exception exception){
+            } catch (Exception exception) {
                 System.out.println(exception.toString());
             }
         }
-        // ---
         return customerCountry;
     }
 
-    public Boolean updateCustomer(Customer customer){
+    public Boolean updateCustomer(Customer customer) {
         Boolean success = false;
-        try{
+        try {
 
             conn = ConnectionHelper.getConnection();
             PreparedStatement prep =
                     conn.prepareStatement("UPDATE customer SET FirstName=?, LastName=?,Country=?, PostalCode=?, Phone=?, Email=?, SupportRepId=?" +
                             " WHERE CustomerId=?");
-            prep.setString(1,customer.getFirstName()); //Maybe refactor this duplication of code
-            prep.setString(2,customer.getLastName());
-            prep.setString(3,customer.getCountry());
+            prep.setString(1, customer.getFirstName());
+            prep.setString(2, customer.getLastName());
+            prep.setString(3, customer.getCountry());
             prep.setString(4, customer.getPostalCode());
-            prep.setString(5,customer.getPhone());
-            prep.setString(6,customer.getEmail());
-            prep.setInt(7,customer.getSupportRepId());
-            prep.setInt(8,customer.getCustomerId());
+            prep.setString(5, customer.getPhone());
+            prep.setString(6, customer.getEmail());
+            prep.setInt(7, customer.getSupportRepId());
+            prep.setInt(8, customer.getCustomerId());
 
 
             int result = prep.executeUpdate();
@@ -194,13 +188,12 @@ public class CustomerRepository {
 
             System.out.println("Update went well!");
 
-        }catch(Exception exception){
+        } catch (Exception exception) {
             System.out.println(exception.toString());
-        }
-        finally {
-            try{
+        } finally {
+            try {
                 ConnectionHelper.close(conn);
-            } catch (Exception exception){
+            } catch (Exception exception) {
                 System.out.println(exception.toString());
             }
         }
@@ -208,42 +201,39 @@ public class CustomerRepository {
         return success;
     }
 
-    public LinkedHashMap<String, Double> getHighestSpenders(){
+    public LinkedHashMap<String, Double> getHighestSpenders() {
 
         LinkedHashMap<String, Double> highestSpenders = new LinkedHashMap<>();
         String invoiceTotalQuery =
                 "SELECT  customer.Firstname, customer.LastName, round( SUM(invoice.Total),2)" +
-                "AS total FROM Customer customer" +
-                "JOIN Invoice invoice ON customer.CustomerId = invoice.CustomerId" +
-                "GROUP BY customer.customerId" +
-                "ORDER BY total DESC;";
+                        "AS total FROM Customer customer " +
+                        "JOIN Invoice invoice ON customer.CustomerId = invoice.CustomerId " +
+                        "GROUP BY customer.customerId " +
+                        "ORDER BY total DESC;";
 
-        // ---
-        try{
+        try {
             // connect
             conn = ConnectionHelper.getConnection();
             PreparedStatement prep =
                     conn.prepareStatement(invoiceTotalQuery);
             ResultSet set = prep.executeQuery();
-            while(set.next()){
+            while (set.next()) {
                 String customerName = set.getString("FirstName") + " " + set.getString("LastName");
 
-                highestSpenders.put(customerName,set.getDouble("total"));
+                highestSpenders.put(customerName, set.getDouble("total"));
             }
             System.out.println("Get all went well!");
             set.close();
             prep.close();
-        }catch(Exception exception){
+        } catch (Exception exception) {
             System.out.println(exception.toString());
-        }
-        finally {
-            try{
+        } finally {
+            try {
                 ConnectionHelper.close(conn);
-            } catch (Exception exception){
+            } catch (Exception exception) {
                 System.out.println(exception.toString());
             }
         }
-        // ---
         return highestSpenders;
     }
 
@@ -269,7 +259,7 @@ public class CustomerRepository {
             conn = ConnectionHelper.getConnection();
             PreparedStatement prep =
                     conn.prepareStatement(popularGenreQuery);
-            prep.setString(1,id);
+            prep.setString(1, id);
             ResultSet set = prep.executeQuery();
             while (set.next()) {
                 popularGenre.add(new PopularGenre(
@@ -281,16 +271,15 @@ public class CustomerRepository {
 
             System.out.println("Get all went well!");
             popularGenre = PopularGenre.compareGenre(popularGenre);
-            
+
             set.close();
             prep.close();
-        }catch(Exception exception){
+        } catch (Exception exception) {
             System.out.println(exception.toString());
-        }
-        finally {
-            try{
+        } finally {
+            try {
                 ConnectionHelper.close(conn);
-            } catch (Exception exception){
+            } catch (Exception exception) {
                 System.out.println(exception.toString());
             }
         }
@@ -298,7 +287,4 @@ public class CustomerRepository {
         return popularGenre;
     }
 
-
-
 }
-

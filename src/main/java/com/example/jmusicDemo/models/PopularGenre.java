@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class PopularGenre {
 
-    private int genreId;
     private String firstName;
     private String lastName;
     private String genreName;
@@ -17,29 +16,45 @@ public class PopularGenre {
         this.mostPopular = mostPopular;
     }
 
-    public String getFirstName() { return firstName; }
+    public String getFirstName() {
+        return firstName;
+    }
 
-    public void setFirstName(String firstName) { this.firstName = firstName; }
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-    public String getLastName() { return lastName; }
+    public String getLastName() {
+        return lastName;
+    }
 
-    public void setLastName(String lastName) { this.lastName = lastName; }
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
-    public String getGenreName() { return genreName; }
+    public String getGenreName() {
+        return genreName;
+    }
 
-    public void setGenreName(String genreName) { this.genreName = genreName; }
+    public void setGenreName(String genreName) {
+        this.genreName = genreName;
+    }
 
-    public int getMostPopular() { return mostPopular; }
+    public int getMostPopular() {
+        return mostPopular;
+    }
 
-    public void setMostPopular(int mostPopular) { this.mostPopular = mostPopular; }
+    public void setMostPopular(int mostPopular) {
+        this.mostPopular = mostPopular;
+    }
 
-    public static ArrayList<PopularGenre> compareGenre(ArrayList<PopularGenre> mostPopularGenre){
+    public static ArrayList<PopularGenre> compareGenre(ArrayList<PopularGenre> mostPopularGenre) {
         ArrayList<PopularGenre> comparedGenre = new ArrayList<PopularGenre>();
 
         int max = 0;
 
-        for (PopularGenre pg : mostPopularGenre){
-            if (pg.getMostPopular() >= max){
+        for (PopularGenre pg : mostPopularGenre) {
+            if (pg.getMostPopular() >= max) {
                 max = pg.getMostPopular();
             }
         }
