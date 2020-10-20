@@ -33,7 +33,7 @@ public class TrackRepository {
         return trackList;
     }
 
-    public static ArrayList<SearchData> getTracksWhichContainsWord(String queryStatement) {
+    public static ArrayList<SearchData> getTracksWhichContainsWord(String query) {
         var resultList = new ArrayList<SearchData>();
 
         Connection conn = null;
@@ -44,7 +44,7 @@ public class TrackRepository {
             conn = ConnectionHelper.getConnection();
 
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setString(1, queryStatement);
+            preparedStatement.setString(1,"%" + query + "%");
 
             ResultSet resultSet = preparedStatement.executeQuery();
 

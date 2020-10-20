@@ -7,6 +7,16 @@
           integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 </head>
 <body>
+
+<div>
+    <div class="input-group mb-3">
+        <form th:action="@{/search}" th:object="${search}"  method="get">
+            <input type="text" class="form-control" placeholder="Search..." required th:field="*{query}">
+            <button type="submit" class="btn btn-outline-primary">Submit</button>
+        </form>
+    </div>
+</div>
+
 <div>
     <div>
         <h3>Artists</h3>

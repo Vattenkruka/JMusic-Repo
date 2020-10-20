@@ -11,8 +11,5 @@ public class Search {
         this.query = query;
     }
 
-    public Search(String query) {
-        this.query = query;
-    }
 }
 

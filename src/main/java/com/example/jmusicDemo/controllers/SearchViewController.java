@@ -13,8 +13,9 @@ public class SearchViewController {
     public String getSearch(Search search, Model model){
 
         model.addAttribute("query", search.getQuery());
-        model.addAttribute("results", TrackRepository.getTracksWhichContainsWord(search.getQuery()));
+        model.addAttribute("resultList", TrackRepository.getTracksWhichContainsWord(search.getQuery()));
 
         return "search";
     }
+
 }
