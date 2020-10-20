@@ -3,13 +3,7 @@ package com.example.jmusicDemo.models;
 public class Track {
     private int trackId;
     private String name;
-    private int albumId;
-    private int mediaTypeId;
-    private int genreId;
-    private String composer;
-    private int milliSeconds;
-    private int bytes;
-    private double unitPrice;
+
 
     public int getTrackId() {
         return trackId;
@@ -27,71 +21,8 @@ public class Track {
         this.name = name;
     }
 
-    public int getAlbumId() {
-        return albumId;
-    }
-
-    public void setAlbumId(int albumId) {
-        this.albumId = albumId;
-    }
-
-    public int getMediaTypeId() {
-        return mediaTypeId;
-    }
-
-    public void setMediaTypeId(int mediaTypeId) {
-        this.mediaTypeId = mediaTypeId;
-    }
-
-    public int getGenreId() {
-        return genreId;
-    }
-
-    public void setGenreId(int genreId) {
-        this.genreId = genreId;
-    }
-
-    public String getComposer() {
-        return composer;
-    }
-
-    public void setComposer(String composer) {
-        this.composer = composer;
-    }
-
-    public int getMilliSeconds() {
-        return milliSeconds;
-    }
-
-    public void setMilliSeconds(int milliSeconds) {
-        this.milliSeconds = milliSeconds;
-    }
-
-    public int getBytes() {
-        return bytes;
-    }
-
-    public void setBytes(int bytes) {
-        this.bytes = bytes;
-    }
-
-    public double getUnitPrice() {
-        return unitPrice;
-    }
-
-    public void setUnitPrice(double unitPrice) {
-        this.unitPrice = unitPrice;
-    }
-
-    public Track(int trackId, String name, int albumId, int mediaTypeId, int genreId, String composer, int milliSeconds, int bytes, double unitPrice) {
+    public Track(int trackId, String name) {
         this.trackId = trackId;
         this.name = name;
-        this.albumId = albumId;
-        this.mediaTypeId = mediaTypeId;
-        this.genreId = genreId;
-        this.composer = composer;
-        this.milliSeconds = milliSeconds;
-        this.bytes = bytes;
-        this.unitPrice = unitPrice;
     }
 }
