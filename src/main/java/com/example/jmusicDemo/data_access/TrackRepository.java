@@ -12,7 +12,7 @@ public class TrackRepository {
     public static ArrayList<Track> getRandomTracks(int amountOfTracks){
         var trackList = new ArrayList<Track>();
         Connection conn = null;
-        String sql = "SELECT TrackId, Name FROM Artist ORDER BY RANDOM() LIMIT?";
+        String sql = "SELECT TrackId,Name FROM Track ORDER BY RANDOM() LIMIT?";
 
         try {
             conn = ConnectionHelper.getConnection();
