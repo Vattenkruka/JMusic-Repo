@@ -26,11 +26,14 @@ Regular users get to see and interact with the home page with a search function.
 Administrative users, on the other hand, can use the web application with the help of the Postman application to test different urls and endpoints. 
  
 ### Homepage:
- 
 The home page displays 5 random artists, genres, and songs. It also has a search function that redirects to the search page. You can only search for song titles in this function. 
-### Search page:
 
+![Homepage](https://github.com/Vattenkruka/JMusic-Repo/blob/main/screenshots/HomePage.PNG) 
+
+### Search page:
 The search page shows the results of the query the user entered. It shows the song title together with the artist, album, and genre. 
+
+![Searchpage](https://github.com/Vattenkruka/JMusic-Repo/blob/main/screenshots/SearchPage.PNG)
 
 ## Authors
 [Per Christer Vågsäter](https://github.com/PerChrister) & [Oscar Dahlquist](https://github.com/Vattenkruka)
