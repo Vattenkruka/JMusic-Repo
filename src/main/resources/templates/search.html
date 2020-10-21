@@ -17,8 +17,8 @@
         <thead>
         <tr>
             <th scope="col">Title</th>
-            <th scope="col">Artist</th>
             <th scope="col">Album</th>
+            <th scope="col">Artist</th>
             <th scope="col">Genre</th>
         </tr>
         </thead>
@@ -26,8 +26,8 @@
         <tr th:each="result: ${resultList}">
 
             <td><label th:text="${result.getTrackName()}"></label></td>
-            <td><label th:text="${result.getArtistName()}"></label></td>
             <td><label th:text="${result.getAlbumName()}"></label></td>
+            <td><label th:text="${result.getArtistName()}"></label></td>
             <td><label th:text="${result.getGenreName()}"></label></td>
 
         </tr>
